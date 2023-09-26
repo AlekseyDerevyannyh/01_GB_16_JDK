@@ -1,0 +1,11 @@
+*.class
+*.iml
+*.bkp
+
+tmp/
+.idea/
+target/
+resources/
+webapp/
+examples/
+out/
