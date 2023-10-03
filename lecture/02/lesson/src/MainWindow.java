@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class MainWindow extends JFrame {
     private static final int POS_X = 400;
@@ -16,16 +17,16 @@ public class MainWindow extends JFrame {
         setVisible(true);
     }
 
-    public void onDrawFrame() {
-        update();
-        render();
+    public void onDrawFrame(MainCanvas canvas, Graphics g, float deltaTime) {
+        update(canvas, deltaTime);
+        render(canvas, g);
     }
 
-    private void update() {
+    private void update(MainCanvas canvas, float deltaTime) {
 
     }
 
-    private void render() {
+    private void render(MainCanvas canvas, Graphics g) {
 
     }
 
