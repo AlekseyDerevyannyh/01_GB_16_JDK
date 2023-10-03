@@ -33,34 +33,42 @@ public class SettingsWindow extends JFrame {
         JLabel labelField = new JLabel("Выберите размеры поля");
         add(labelField);
 
-        JLabel labelCurrentField = new JLabel("Текущий размер поля: ");
+        JLabel labelCurrentField = new JLabel("Текущий размер поля: " + sizeX);
         add(labelCurrentField);
 
-        JSlider sliderField = new JSlider(3, 10, 3);
-        sliderField.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                labelCurrentField.setText("Текущий размер поля: " + sliderField.getValue());
-            }
-        });
+        JSlider sliderField = new JSlider(3, 10, sizeX);
+
         add(sliderField);
 
         JLabel labelLength = new JLabel("Выберите длину для победы");
         add(labelLength);
 
-        JLabel labelCurrentLength = new JLabel("Текущая длина для победы: ");
+        JLabel labelCurrentLength = new JLabel("Текущая длина для победы: " + winLength);
         add(labelCurrentLength);
 
-        JSlider sliderLength = new JSlider(3, 10, 3);
-        sliderLength.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                labelCurrentLength.setText("Текущая длина для победы: " + sliderLength.getValue());
-            }
-        });
+        JSlider sliderLength = new JSlider(3, 10, winLength);
         add(sliderLength);
 
         add(btnStart);
+
+        sliderField.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                labelCurrentField.setText("Текущий размер поля: " + sliderField.getValue());
+                sliderLength.setMaximum(sliderField.getValue());
+                if (sliderLength.getValue() > sliderField.getValue())
+                    sliderLength.setValue(sliderField.getValue());
+            }
+        });
+
+        sliderLength.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                sliderLength.setMaximum(sliderField.getValue());
+                labelCurrentLength.setText("Текущая длина для победы: " + sliderLength.getValue());
+            }
+        });
+
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

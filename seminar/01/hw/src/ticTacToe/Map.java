@@ -24,6 +24,7 @@ public class Map extends JPanel {
     private final int EMPTY_DOT = 0;
     private int fieldSizeX = 3;
     private int fieldSizeY = 3;
+    private int winLength = 3;
     private char[][] field;
 
     private int panelWidth;
@@ -57,7 +58,7 @@ public class Map extends JPanel {
     }
 
     private boolean checkEndGame(int dot, int gameOverType) {
-        if (checkWin((char)dot)) {
+        if (checkWin(dot)) {
             this.gameOverType = gameOverType;
             isGameOver = true;
             repaint();
@@ -74,6 +75,10 @@ public class Map extends JPanel {
 
     void startNewGame(int mode, int fSzX, int fSzY, int wLen) {
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d;\nWin Length: %d", mode, fSzX, fSzY, wLen);
+        fieldSizeX = fSzX;
+        fieldSizeY = fSzY;
+        winLength = wLen;
+
         initMap();
         isGameOver = false;
         isInitialized = true;
@@ -91,15 +96,15 @@ public class Map extends JPanel {
 
         panelWidth = getWidth();
         panelHeight = getHeight();
-        cellHeight = panelHeight / SettingsWindow.getSizeX();
-        cellWidth = panelWidth / SettingsWindow.getSizeY();
+        cellHeight = panelHeight / fieldSizeX;
+        cellWidth = panelWidth / fieldSizeY;
 
         g.setColor(Color.BLACK);
-        for (int h = 0; h < SettingsWindow.getSizeX(); h++) {
+        for (int h = 0; h < fieldSizeY; h++) {
             int y = h * cellHeight;
             g.drawLine(0, y, panelWidth, y);
         }
-        for (int w = 0; w < SettingsWindow.getSizeY(); w++) {
+        for (int w = 0; w < fieldSizeX; w++) {
             int x = w * cellWidth;
             g.drawLine(x, 0, x, panelHeight);
         }
@@ -153,8 +158,6 @@ public class Map extends JPanel {
      * Tic Tac Toe game logic
      */
     private void initMap() {
-        fieldSizeX = 3;
-        fieldSizeY = 3;
         field = new char[fieldSizeY][fieldSizeX];
         for (int i = 0; i < fieldSizeY; i++) {
             for (int j = 0; j < fieldSizeX; j++) {
@@ -180,18 +183,27 @@ public class Map extends JPanel {
         field[y][x] = AI_DOT;
     }
 
-    private boolean checkWin(char c) {
-        if (field[0][0] == c && field[0][1] == c && field[0][2] == c) return true;
-        if (field[1][0] == c && field[1][1] == c && field[1][2] == c) return true;
-        if (field[2][0] == c && field[2][1] == c && field[2][2] == c) return true;
+    private boolean checkLine(int x, int y, int vx, int vy, int len, int c) {
+        final int far_x = x + (len - 1) * vx;
+        final int far_y = y + (len - 1) * vy;
+        if (!isValidCell(far_x, far_y))
+            return false;
+        for (int i = 0; i < len; i++) {
+            if (field[y + i * vy][x + i * vx] != c)
+                return false;
+        }
+        return true;
+    }
 
-        if (field[0][0] == c && field[1][0] == c && field[2][0] == c) return true;
-        if (field[0][1] == c && field[1][1] == c && field[2][1] == c) return true;
-        if (field[0][2] == c && field[1][2] == c && field[2][2] == c) return true;
-
-        if (field[0][0] == c && field[1][1] == c && field[2][2] == c) return true;
-        if (field[0][2] == c && field[1][1] == c && field[2][0] == c) return true;
-
+    private boolean checkWin(int c) {
+        for (int i = 0; i < fieldSizeX; i++) {
+            for (int j = 0; j < fieldSizeY; j++) {
+                if (checkLine(i, j, 1, 0, winLength, c))    return true;
+                if (checkLine(i, j, 1, 1, winLength, c))    return true;
+                if (checkLine(i, j, 0, 1, winLength, c))    return true;
+                if (checkLine(i, j, 1, -1, winLength, c))   return true;
+            }
+        }
         return false;
     }
 
