@@ -16,7 +16,7 @@ public class Ball extends Sprite {
     }
 
     @Override
-    void update(MainCanvas canvas, float deltaTime) {
+    public void update(MainCanvas canvas, float deltaTime) {
         x += vX * deltaTime;
         y += vY * deltaTime;
 
@@ -39,7 +39,7 @@ public class Ball extends Sprite {
     }
 
     @Override
-    void render(MainCanvas canvas, Graphics g) {
+    public void render(MainCanvas canvas, Graphics g) {
         g.setColor(color);
         g.fillOval((int) getLeft(), (int) getTop(), (int) getWidth(), (int) getHeight());
     }
