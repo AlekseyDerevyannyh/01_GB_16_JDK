@@ -9,7 +9,6 @@ import java.util.List;
 public class FileOperation {
     private final String fileName;
 
-
     public FileOperation(String fileName) {
         this.fileName = fileName;
         try (FileWriter writer = new FileWriter(fileName, true)) {
@@ -25,7 +24,6 @@ public class FileOperation {
             writer.append('\n');
             writer.flush();
         } catch (IOException e) {
-//            System.out.println("Error");
             fileOperationErrorNotification();
         }
     }
@@ -48,7 +46,6 @@ public class FileOperation {
             }
             fileReader.close();
         } catch (IOException e) {
-//            System.out.println("Error");
             fileOperationErrorNotification();
         }
         return lines;
@@ -63,6 +60,5 @@ public class FileOperation {
         frameError.setBounds(500, 300, 300, 100);
         frameError.add(label, BorderLayout.CENTER);
         frameError.setVisible(true);
-//        this.frameError.setVisible(true);
     }
 }
