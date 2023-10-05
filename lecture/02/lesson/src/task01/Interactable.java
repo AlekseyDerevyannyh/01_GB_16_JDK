@@ -1,3 +1,5 @@
+package task01;
+
 import java.awt.*;
 
 public interface Interactable {

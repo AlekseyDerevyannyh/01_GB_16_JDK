@@ -1,3 +1,5 @@
+package task01;
+
 import java.awt.*;
 import java.util.Random;
 

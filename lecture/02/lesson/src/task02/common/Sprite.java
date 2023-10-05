@@ -1,3 +1,5 @@
+package task02.common;
+
 import java.awt.*;
 
 public abstract class Sprite implements Interactable {

@@ -1,7 +1,11 @@
+package task02.circles;
+
+import task02.common.*;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements CanvasRepaintListener {
     private static final int POS_X = 400;
     private static final int POS_Y = 200;
     private static final int WINDOW_WIDTH = 800;
@@ -23,6 +27,7 @@ public class MainWindow extends JFrame {
         setVisible(true);
     }
 
+    @Override
     public void onDrawFrame(MainCanvas canvas, Graphics g, float deltaTime) {
         update(canvas, deltaTime);
         render(canvas, g);

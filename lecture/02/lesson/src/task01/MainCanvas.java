@@ -1,3 +1,5 @@
+package task01;
+
 import javax.swing.*;
 import java.awt.*;
 

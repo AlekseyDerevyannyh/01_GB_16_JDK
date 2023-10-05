@@ -1,3 +1,8 @@
+package task02.circles;
+
+import task02.common.Interactable;
+import task02.common.MainCanvas;
+
 import java.awt.*;
 
 public class Background implements Interactable {
