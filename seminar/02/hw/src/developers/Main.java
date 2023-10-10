@@ -6,16 +6,16 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         FullStack devFullStack = new DeveloperFullStack();
-//        devFullStack.createFront();
-//        devFullStack.createServer();
-
         BackEnder devBackEnd = new DeveloperBackEnd();
-//        devBackEnd.createServer();
-
         List<BackEnder> devBackEnders = Arrays.asList(devFullStack, devBackEnd);
 
         for (BackEnder devBackEnder : devBackEnders) {
             devBackEnder.createServer();
+        }
+
+        Developer dev = new DeveloperFrontEnd();
+        if (dev instanceof FrontEnder) {
+            ((FrontEnder) dev).createFront();
         }
     }
 }
@@ -32,7 +32,7 @@ interface FullStack extends BackEnder, FrontEnder {
 
 }
 
-class DeveloperFullStack implements FullStack {
+class DeveloperFullStack implements Developer, FullStack {
 
     @Override
     public void createServer() {
@@ -45,10 +45,22 @@ class DeveloperFullStack implements FullStack {
     }
 }
 
-class DeveloperBackEnd implements BackEnder {
+class DeveloperBackEnd implements Developer, BackEnder {
 
     @Override
     public void createServer() {
         System.out.println("Crashed the server");
     }
+}
+
+class DeveloperFrontEnd implements Developer, FrontEnder {
+
+    @Override
+    public void createFront() {
+        System.out.println("Crashed the front");
+    }
+}
+
+interface Developer {
+
 }
