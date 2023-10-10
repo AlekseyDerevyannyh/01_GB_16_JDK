@@ -1,13 +1,22 @@
 package developers;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         FullStack devFullStack = new DeveloperFullStack();
-        devFullStack.createFront();
-        devFullStack.createServer();
+//        devFullStack.createFront();
+//        devFullStack.createServer();
 
         BackEnder devBackEnd = new DeveloperBackEnd();
-        devBackEnd.createServer();
+//        devBackEnd.createServer();
+
+        List<BackEnder> devBackEnders = Arrays.asList(devFullStack, devBackEnd);
+
+        for (BackEnder devBackEnder : devBackEnders) {
+            devBackEnder.createServer();
+        }
     }
 }
 
