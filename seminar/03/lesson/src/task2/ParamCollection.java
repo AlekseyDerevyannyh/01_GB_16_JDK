@@ -1,6 +1,10 @@
 package task2;
 
-public class ParamCollection<T> {
+import task3.ParamIterator;
+
+import java.util.Iterator;
+
+public class ParamCollection<T> implements Iterable<T> {
     private T[] array;
     private int index = 0;
     private int size;
@@ -27,5 +31,18 @@ public class ParamCollection<T> {
             System.out.printf(t + " ");
         }
         System.out.println();
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public T getByIndex(int index) {
+        return array[index];
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ParamIterator<>(this);
     }
 }
