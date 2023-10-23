@@ -1,4 +1,4 @@
-package thread;
+package task02;
 
 public class MyRunnable implements Runnable {
     @Override

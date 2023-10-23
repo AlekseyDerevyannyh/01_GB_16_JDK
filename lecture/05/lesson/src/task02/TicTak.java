@@ -1,4 +1,4 @@
-package thread;
+package task02;
 
 public class TicTak implements Runnable {
     private final String bracket;
