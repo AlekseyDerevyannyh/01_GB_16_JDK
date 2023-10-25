@@ -1,11 +1,11 @@
 package task09;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class CME {
     public static void main(String[] args) {
-        List<Integer> list = new CopyOnWriteArrayList<>();
+        Queue<Integer> list = new ConcurrentLinkedDeque<>();
         for (int i = 0; i < 100; i++) {
             list.add(i);
         }
