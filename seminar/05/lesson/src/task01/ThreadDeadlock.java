@@ -1,3 +1,8 @@
+/*
+● Создать два класс ObjectA, ObjectB
+● Реализовать класс в котором два потока при запуске провоцируют DeadLock для
+объектов ObjectA, ObjectB
+ */
 package task01;
 
 class ThreadDeadlock {
