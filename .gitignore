@@ -1,11 +1,23 @@
-*.class
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+#.idea/modules.xml
+#.idea/jarRepositories.xml
+#.idea/compiler.xml
+#.idea/libraries/
+*.iws
 *.iml
+*.ipr
+
+*.class
 *.bkp
 
 tmp/
+# target/
 .idea/
-target/
-resources/
-webapp/
-examples/
-out/
+# resources/
+# webapp/
+# examples/
+# out/
